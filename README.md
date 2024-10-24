@@ -1,5 +1,7 @@
 # Python Review
 
+In this repo, I will list some of popular operations and functions that we use them often in python.
+
 [1. Basic operations](#1-basic-operations)
   - [a. Mathematics operations](#a-mathematics-operations)
 
@@ -70,6 +72,8 @@ dict = {
   }
 }  # followed by the rule: one key - one value, the keys in dict are unique to one another
 ```
+### Function
+### Class
 ## 2. Numpy
 
 Mostly used for operations with matrix and tensor.
@@ -168,13 +172,13 @@ Read more at: [here](https://numpy.org/devdocs/reference/routines.linalg.html)
 
 ## 3. Pandas
 
-Pandas is a powerful library designed for handling with tabular in many formats: .csv, .xlsx, .json, .html, .sql,... But .csv is the most popular format file to store data, especially in data analysis.
+Pandas is a powerful library designed for handling with tabular in many formats: .csv, .xlsx, .json, .html, .sql,... But .csv is the most popular format file to store table-format data, especially in data analysis.
 
 ```
 import pandas as pd
 ```
 ### a. DataFrame()
-Read the csv file, the result will be saved as table-form with rows and columns:
+Read the csv file, the result will be shown as a table with rows and columns:
 ```
 dataframe = pd.read_csv('path-to-your-csv')
 ```
@@ -193,7 +197,7 @@ then when saving your dataframe to a .csv file:
 ```
 dataframe.to_csv("path-to-new-csv")
 ```
-### b. basic operations
+### b. Basic operations
 - **head and tail**: Show the content of variable `dataframe` by row
 ```
 dataframe.head()    # Show first 5 rows of the dataframe (default)
@@ -220,9 +224,29 @@ row_2_10 = dataframe.loc[1:9]  # Get rows with all columns from second row to 10
 # .iloc[row, col] used for searching by both rows and cols' indexes.
 output = dataframe.iloc[2,3]      # Get the value in row 3 and col 4
 output = dataframe.iloc[:5, 2:4]  # Get sub dataframe has rows from 1st to 6th and cols from 3rd to 5th
-
-# Search by condition
-
+```
+- **Search by condition**:
+```
+a = dataframe[dataframe['Name'] == 'a']  # Return the row where Name = 'a'
+```
+- **Add new column**:
+```
+dataframe['New_column'] = [a,b,c,...]
+```
+- **Drop column**:
+```
+dataframe.drop('column_name', axis=1)
+```
+- **Rename column**:
+```
+dataframe.rename(columns={'old_name': 'new_name'})
+```
+- **Get mean, median and std**:
+Notice that these only work on numerical columns
+```
+mean = dataframe['column_name'].mean()
+median = dataframe['column_name'].median()
+std = dataframe['column_name'].std()
 ```
 ### c. info(): 
 Return the general information of dataframe including class, number of rows, number of columns, names of columns, non-null count, dtypes of each columns,...  
@@ -231,8 +255,41 @@ In data analysis, this helps to take a quick understanding of dataframe.
 dataframe.info()
 ```
 ### d. describe():
-
-## 4. Matplotlib and seaborn
+Return statistical information of the dataframe including count, mean, std, min, max,... but only works on numerical columns
+```
+dataframe.describe()
+```
+### e. copy():
+Copy dataframe to new variable:
+```
+new_dataframe = dataframe.copy(deep = True)  # Default: deep = True, copy all structure and data values from dataframe to new dataframe, then changing new_dataframe not affect to orinal dataframe. Otherwise if deep = False, it will only copy structure but share data values.
+```
+### f. Null values handling
+- **isnull()** or **isna()**:
+Both function share the same effect to count the null values in dataframe
+```
+dataframe.isnull()          # Return the null values count of all columns
+dataframe['Name'].isnull()  # Return the null values count of column 'Name'
+```
+- **dropna()**: Drop row with null values
+```
+dataframe.dropna()
+```
+- **fillna()**: Replace null values with specified values
+```
+dataframe.fillna(0)  # Replace null values with 0
+```
+### g. apply()
+This takes a function and apply it to all values in pandas series. 
+```
+def compare(num):
+  if num < 200:
+    return False
+  else:
+    return True
+dataframe.apply(compare)
+```
+## 4. Matplotlib and Seaborn
 
 ## 5. Scikit-learn
 
