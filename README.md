@@ -1,6 +1,6 @@
 # Python Review
 
-In this repo, I will list some of popular operations and functions that we use them often in python.
+In this repo, I will list some operations and functions that I find them popular in my learning and working.
 
 [1. Basic operations](#1-basic-operations)
   - [a. Mathematics operations](#a-mathematics-operations)
