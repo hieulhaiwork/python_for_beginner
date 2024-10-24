@@ -1,5 +1,12 @@
 # Python Review
 
+[1. Basic operations](#1-basic-operations)
+  - [a. Mathematics operations](#a-mathematics-operations)
+
+[2. Numpy](#2-numpy)
+  - [a. array](#a-array)
+  - [b. basic operations](#b-basic-operations)
+
 # 1. Basic operations
 
 ## a. Mathematics operations
