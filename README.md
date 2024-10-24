@@ -4,11 +4,33 @@ In this repo, I will list some of popular operations and functions that we use t
 
 [1. Basic operations](#1-basic-operations)
   - [a. Mathematics operations](#a-mathematics-operations)
+  - [b. Function](#b-function)
+  - [c. Class](#c-class)
 
 [2. Numpy](#2-numpy)
-  - [a. array](#a-array)
-  - [b. basic operations](#b-basic-operations)
-  - [c. zeros and ones](#c-zeros-and-ones)
+  - [a. Array](#a-array)
+  - [b. Basic operations](#b-basic-operations)
+  - [c. Zeros and ones](#c-zeros-and-ones)
+  - [d. Reshape](#d-reshape)
+  - [e. Arange and linspace](#e-arange-and-linspace)
+  - [f. Concatenate](#f-concatenate)
+  - [g. Random](#g-random)
+  - [h. Linalg](#h-linalg)
+
+[3. Pandas](#3-pandas)
+  - [a. DataFrame](#a-dataframe)
+  - [b. Basic operations](#b-basic-operations)
+  - [c. info()](#c-info)
+  - [d. describe()](#d-describe)
+  - [e. copy()](#e-copy)
+  - [f. NULL values handling](#f-null-values-handling)
+  - [g. apply()](#g-apply)
+
+[4. Matplotlib and Seaborn](#4-matplotlib-and-seaborn)
+
+[5. Scikit-learn](#5-scikit-learn)
+
+[6. OpenCV](#6-opencv)
 
 ## 1. Basic operations
 
@@ -72,8 +94,8 @@ dict = {
   }
 }  # followed by the rule: one key - one value, the keys in dict are unique to one another
 ```
-### Function
-### Class
+### b. Function
+### c. Class
 ## 2. Numpy
 
 Mostly used for operations with matrix and tensor.
@@ -81,7 +103,7 @@ Below are popular functions that I often use.
 ```(python)
 import numpy as np
 ```
-### a. array
+### a. Array
 ```(python)
 matrix = np.array([1,2])  # create a matrix shape (1,2) but in python this will be shown as (2,)
 matrix = np.array([[1,2,3],[2,3,4]])  # create a matrix shape (2,3)
@@ -97,7 +119,7 @@ matrix.ndim    # get the dimensions of matrix: 2
 matrix.dtype   # get dtype of matrix, some functions in other libraries require specified dtype, default: int32 for int and float32 for float values
 also matrix = np.array([[1,2,3],[2,3,4]], dtype= np.int8)
 ```
-### b. basic operations
+### b. Basic operations
 ```(python)
 # slicing
 matrix_a = np.array([[1,2,3],[2,3,4]])
@@ -127,18 +149,18 @@ output = matrix_a[matrix_a < 35]  # return the matrix contains the value in matr
 # dot product (matrix_a has shape (m,n) then matrix_b must have shape (n,z))
 output = np.dot(matrix_a, matrix_b) = matrix_a @ matrix_b
 ```
-### c. zeros and ones
+### c. Zeros and ones
 ```(python)
 zero = np.zeros((3,4), dtype=np.int8)         # create a matrix shape (3,4) with all value 0
 ones = np.ones((3,4,2))                       # create a tensor shape (3,4,2) with all value 1
 ```
-### d. reshape
+### d. Reshape
 ```(python)
 matrix = np.array([[1,2,3],[2,3,4]])      # shape: (2,3)
 reshaped_matrix = matrix.reshape((3,2))   # shape: (3,2)
 Notice that: reshaped_matrix.size must be equal to matrix.size or error will occur
 ```
-### e. arange and linspace
+### e. Arange and linspace
 ```(python)
 a = np.arange(0,50,10)    # this function get start, end and step like function range but return output as array
 # Ouptut: array([0,10,20,30,40])
@@ -146,7 +168,7 @@ a = np.arange(0,50,10)    # this function get start, end and step like function 
 b = np.linspace(0,50,num = 10)  # similar to arange but using number of samples instead of step
 # Output: array([ 0.        ,  5.55555556, 11.11111111, 16.66666667, 22.22222222, 27.77777778, 33.33333333, 38.88888889, 44.44444444, 50.        ])
 ```
-### f. concatenate
+### f. Concatenate
 ```(python)
 a = np.array([1,2,3])
 b = np.array([4,5,6])
@@ -154,7 +176,7 @@ c = np.array([7,8])
 result = np.concatenate((a, b), axis=0)  # Concat 2 matrix by axis (ordered by your choice but common order: 0 (rows), 1 (cols), 2 (channels in image), ...)
 # Output: array([1, 2, 3, 4, 5, 6])
 ```
-### g. random
+### g. Random
 Below are popular syntax to get random set but class random in numpy can do more than that including get random values follows by uniform distribution, rayleigh distribution,.... 
 ```(python)
 output = np.random.randint(10)        # Get random 1 interger value from 0 to 10
@@ -166,7 +188,7 @@ output = np.random.choice([1,2,3])    # Get 1 random value from an array (np.nda
 output = np.random.choice([1,2,3], size=4)      # Return a numpy array with 4 random values in [1,2,3]
 output = np.random.choice([1,2,3], size=(3,5))  # Return a numpy array with 3 rows and each row has 5 random values
 ```
-### h. linalg
+### h. Linalg
 This is powerfull tool to work with matrix, specially 2-D matrix, including norm, trace, svd,...  
 Read more at: [here](https://numpy.org/devdocs/reference/routines.linalg.html)
 
@@ -177,7 +199,7 @@ Pandas is a powerful library designed for handling with tabular in many formats:
 ```
 import pandas as pd
 ```
-### a. DataFrame()
+### a. DataFrame
 Read the csv file, the result will be shown as a table with rows and columns:
 ```
 dataframe = pd.read_csv('path-to-your-csv')
