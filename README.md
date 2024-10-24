@@ -26,12 +26,6 @@ In this repo, I will list some of popular operations and functions that we use t
   - [f. NULL values handling](#f-null-values-handling)
   - [g. apply()](#g-apply)
 
-[4. Matplotlib and Seaborn](#4-matplotlib-and-seaborn)
-
-[5. Scikit-learn](#5-scikit-learn)
-
-[6. OpenCV](#6-opencv)
-
 ## 1. Basic operations
 
 ### a. Mathematics operations
@@ -95,7 +89,66 @@ dict = {
 }  # followed by the rule: one key - one value, the keys in dict are unique to one another
 ```
 ### b. Function
+```(python)
+def function_name(parameter_1: int, parameter_2: str) -> Any:
+    <what does your function do?>
+    return None
+```
 ### c. Class
+#### Basic
+```(python)
+class class_name():
+  def __init__(self):
+    self.a = 1
+    self.b = 0
+    ....
+  def do_work(self):
+    return None  
+```
+#### Advanced
+##### 1. Inheritance
+```(python)
+class Animal:
+    def speak(self):
+        return "Some sound"
+
+class Dog(Animal):
+    def bit(self):
+        return "Ngow"
+
+dog = Dog()
+print(dog.speak())
+# Output: Some sound
+```
+##### 2. Class Methods and Static Methods
+```(python)
+# classmethod
+class Animal:
+  def __init__(self, name):
+    self.name = name
+
+  @classmethod
+  def create(cls, name):
+    return cls(name)
+class Dog(Animal):
+  pass
+class Cat(Animal):
+  pass
+
+dog = Dog.create("Buddy")
+cat = Cat.create("Meow")
+
+print(dog.name)  # Output: Buddy
+print(cat.name)  # Output: Meow
+
+#staticmethod
+class Math:
+    @staticmethod
+    def add(a, b):
+        return a + b
+result = Math.add(3, 5)
+print(result)  # Output: 8
+```
 ## 2. Numpy
 
 Mostly used for operations with matrix and tensor.
@@ -311,12 +364,4 @@ def compare(num):
     return True
 dataframe.apply(compare)
 ```
-## 4. Matplotlib and Seaborn
-
-## 5. Scikit-learn
-
-## 6. Opencv
-### a. merge
-
-## 7. nltk
 
