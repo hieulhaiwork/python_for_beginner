@@ -7,7 +7,7 @@
 ```(python)
 # Assign variables
 a = 1
-b = a
+b = a * 5
 c = b - 4
 
 # Root and exponent
@@ -159,6 +159,26 @@ This is powerfull tool to work with matrix, specially 2-D matrix, including norm
 Read more at: [here](https://numpy.org/devdocs/reference/routines.linalg.html)
 
 # 3. Pandas
+
+Pandas is a powerful library designed for handling with tabular in many formats: .csv, .xlsx, .json, .html, .sql,... But .csv is the most popular format file to store data, especially in data analysis.
+
+```
+import pandas as pd
+```
+## a. read_csv
+Read the content in a csv file, the result will be saved as table-form with rows and columns
+```
+dataframe = pd.read_csv('path-to-your-csv')
+```
+## b. head and tail
+Show the content of variable `dataframe` by row:
+```
+dataframe.head()    # Show first 5 rows of the dataframe (default)
+dataframe.head(10)  # Show first 10 rows of the dataframe
+dataframe.tail()    # Show last 5 rows of the dataframe (default)
+dataframe.tail(10)  # Show last 10 rows of the dataframe
+```
+## c. sclicing
 
 # 4. Matplotlib and seaborn
 
