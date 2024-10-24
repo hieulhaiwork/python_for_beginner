@@ -6,10 +6,11 @@
 [2. Numpy](#2-numpy)
   - [a. array](#a-array)
   - [b. basic operations](#b-basic-operations)
+  - [c. zeros and ones](#c-zeros-and-ones)
 
-# 1. Basic operations
+## 1. Basic operations
 
-## a. Mathematics operations
+### a. Mathematics operations
 
 ```(python)
 # Assign variables
@@ -69,14 +70,14 @@ dict = {
   }
 }  # followed by the rule: one key - one value, the keys in dict are unique to one another
 ```
-# 2. Numpy
+## 2. Numpy
 
 Mostly used for operations with matrix and tensor.
 Below are popular functions that I often use.
 ```(python)
 import numpy as np
 ```
-## a. array
+### a. array
 ```(python)
 matrix = np.array([1,2])  # create a matrix shape (1,2) but in python this will be shown as (2,)
 matrix = np.array([[1,2,3],[2,3,4]])  # create a matrix shape (2,3)
@@ -92,7 +93,7 @@ matrix.ndim    # get the dimensions of matrix: 2
 matrix.dtype   # get dtype of matrix, some functions in other libraries require specified dtype, default: int32 for int and float32 for float values
 also matrix = np.array([[1,2,3],[2,3,4]], dtype= np.int8)
 ```
-## b. basic operations
+### b. basic operations
 ```(python)
 # slicing
 matrix_a = np.array([[1,2,3],[2,3,4]])
@@ -122,18 +123,18 @@ output = matrix_a[matrix_a < 35]  # return the matrix contains the value in matr
 # dot product (matrix_a has shape (m,n) then matrix_b must have shape (n,z))
 output = np.dot(matrix_a, matrix_b) = matrix_a @ matrix_b
 ```
-## c. zeros and ones
+### c. zeros and ones
 ```(python)
 zero = np.zeros((3,4), dtype=np.int8)         # create a matrix shape (3,4) with all value 0
 ones = np.ones((3,4,2))                       # create a tensor shape (3,4,2) with all value 1
 ```
-## d. reshape
+### d. reshape
 ```(python)
 matrix = np.array([[1,2,3],[2,3,4]])      # shape: (2,3)
 reshaped_matrix = matrix.reshape((3,2))   # shape: (3,2)
 Notice that: reshaped_matrix.size must be equal to matrix.size or error will occur
 ```
-## e. arange and linspace
+### e. arange and linspace
 ```(python)
 a = np.arange(0,50,10)    # this function get start, end and step like function range but return output as array
 # Ouptut: array([0,10,20,30,40])
@@ -141,7 +142,7 @@ a = np.arange(0,50,10)    # this function get start, end and step like function 
 b = np.linspace(0,50,num = 10)  # similar to arange but using number of samples instead of step
 # Output: array([ 0.        ,  5.55555556, 11.11111111, 16.66666667, 22.22222222, 27.77777778, 33.33333333, 38.88888889, 44.44444444, 50.        ])
 ```
-## f. concatenate
+### f. concatenate
 ```(python)
 a = np.array([1,2,3])
 b = np.array([4,5,6])
@@ -149,7 +150,7 @@ c = np.array([7,8])
 result = np.concatenate((a, b), axis=0)  # Concat 2 matrix by axis (ordered by your choice but common order: 0 (rows), 1 (cols), 2 (channels in image), ...)
 # Output: array([1, 2, 3, 4, 5, 6])
 ```
-## g. random
+### g. random
 Below are popular syntax to get random set but class random in numpy can do more than that including get random values follows by uniform distribution, rayleigh distribution,.... 
 ```(python)
 output = np.random.randint(10)        # Get random 1 interger value from 0 to 10
@@ -161,38 +162,82 @@ output = np.random.choice([1,2,3])    # Get 1 random value from an array (np.nda
 output = np.random.choice([1,2,3], size=4)      # Return a numpy array with 4 random values in [1,2,3]
 output = np.random.choice([1,2,3], size=(3,5))  # Return a numpy array with 3 rows and each row has 5 random values
 ```
-## h. linalg
+### h. linalg
 This is powerfull tool to work with matrix, specially 2-D matrix, including norm, trace, svd,...  
 Read more at: [here](https://numpy.org/devdocs/reference/routines.linalg.html)
 
-# 3. Pandas
+## 3. Pandas
 
 Pandas is a powerful library designed for handling with tabular in many formats: .csv, .xlsx, .json, .html, .sql,... But .csv is the most popular format file to store data, especially in data analysis.
 
 ```
 import pandas as pd
 ```
-## a. read_csv
-Read the csv file, the result will be saved as table-form with rows and columns
+### a. DataFrame()
+Read the csv file, the result will be saved as table-form with rows and columns:
 ```
 dataframe = pd.read_csv('path-to-your-csv')
 ```
-## b. head and tail
-Show the content of variable `dataframe` by row:
+or you can create your own dataframe from dictionary:
+```
+dict = {
+  'A': [0,1,2,3]
+  'B': [1990,2000,2010,2020]
+  'C': ['a', 'b', 'c', 5]
+  'D': [4,1,2,'one']
+}
+
+my_dataframe = pd.DataFrame(dict)
+```
+then when saving your dataframe to a .csv file:
+```
+dataframe.to_csv("path-to-new-csv")
+```
+### b. basic operations
+- **head and tail**: Show the content of variable `dataframe` by row
 ```
 dataframe.head()    # Show first 5 rows of the dataframe (default)
 dataframe.head(10)  # Show first 10 rows of the dataframe
 dataframe.tail()    # Show last 5 rows of the dataframe (default)
 dataframe.tail(10)  # Show last 10 rows of the dataframe
 ```
-## c. sclicing
+- **columns**: Return names of all columns in dataframe
+```
+columns = dataframe.columns
+```
+- **loc and iloc**: Choose and search data in dataframe
+```
+# Choose a single column
+a = dataframe['Date']
 
-# 4. Matplotlib and seaborn
+# Choose multi columns
+a = dataframe[['A', 'B', 'C']]
 
-# 5. Scikit-learn
+# .loc[index] used for searching by rows when index is index of the row
+row_1 = dataframe.loc[0]
+row_2_10 = dataframe.loc[1:9]  # Get rows with all columns from second row to 10th row
 
-# 6. Opencv
-## a. merge
+# .iloc[row, col] used for searching by both rows and cols' indexes.
+output = dataframe.iloc[2,3]      # Get the value in row 3 and col 4
+output = dataframe.iloc[:5, 2:4]  # Get sub dataframe has rows from 1st to 6th and cols from 3rd to 5th
 
-# 7. nltk
+# Search by condition
+
+```
+### c. info(): 
+Return the general information of dataframe including class, number of rows, number of columns, names of columns, non-null count, dtypes of each columns,...  
+In data analysis, this helps to take a quick understanding of dataframe.
+```
+dataframe.info()
+```
+### d. describe():
+
+## 4. Matplotlib and seaborn
+
+## 5. Scikit-learn
+
+## 6. Opencv
+### a. merge
+
+## 7. nltk
 
