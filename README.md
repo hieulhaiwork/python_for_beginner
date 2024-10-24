@@ -166,7 +166,7 @@ Pandas is a powerful library designed for handling with tabular in many formats:
 import pandas as pd
 ```
 ## a. read_csv
-Read the content in a csv file, the result will be saved as table-form with rows and columns
+Read the csv file, the result will be saved as table-form with rows and columns
 ```
 dataframe = pd.read_csv('path-to-your-csv')
 ```
